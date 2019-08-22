@@ -1,0 +1,258 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+
+namespace _211P_Fractions
+{
+    class Program
+    {
+        static void Main(string[] args)
+        //Initial Fractions (Done)
+        {
+            int[] someFraction; // = new int[2] DO NOT DO THIS!!!
+            someFraction = CreateFraction(1, 9); //
+        }
+        static int[] CreateFraction (int num, int den)
+        {
+            //Give a numerator and denominator, construct a fraction
+            int[] returnValue = new int[2];
+            returnValue[0] = num;
+            returnValue[1] = den;
+            return returnValue;
+        }
+        static int[] CreateFraction (int num)
+        {
+            //Given an integer, create the rational representation
+            /*int[] returnValue = new int[2];
+            returnValue[0] = num;
+            returnValue[1] = 1;
+            return returnValue;*/
+            return CreateFraction(num, 1);
+        }
+        static int[] CreateCopy(int[] fraction)
+        {
+            int[] FractionCopy = new int[2];
+            FractionCopy[0] = fraction[0];
+            FractionCopy[1] = fraction[1];
+            return FractionCopy;
+        }
+
+
+        //Accessor Functions (Done)
+        static int Numerator(int[] fraction)
+        {
+            return fraction[0];
+        }
+        static int Denominator(int[] fraction)
+        {
+            return fraction[1];
+        }
+        static int N(int[] fraction)
+        {
+            return fraction[0];
+        }
+        static int D(int[] fraction)
+        {
+            return fraction[1];
+        }
+        static int intPart(int[] fraction)
+        {
+            return (fraction[0]/fraction[1]);
+        }
+        static double doublePart(int[] fraction)
+        {
+            int returnWhole = fraction[0] / fraction[1]
+            return ((fraction[0] / fraction[1])- returnWhole);
+        }
+        static int Remainder(int[] fraction)
+        {
+            return (fraction[0]%fraction[1]);
+        }
+        static string PrettyPrint(int[] fraction)
+        {
+            return (fraction[0] + "/" + fraction[1]);
+        }
+        static string PrettyPrintMixed(int[] fraction)
+        {
+            return (fraction[0]/fraction[1] + " " + fraction[0]%fraction[1] + "/" + fraction[1]);
+        }
+
+
+        //Checking Functions (Done)
+        bool IsValidFunction (int[]fraction)
+        {
+            return (fraction[1]!=0);
+        }
+        bool IsSimplified (int[]fraction)
+        {
+            bool rV = true;
+            //Go through all the numbers and see if it divides both the numerator and denominator
+            for (int i = 2; i < fraction[0]; i++)
+            {
+                if (fraction[0] % i == 0 && fraction[1] % i == 0)
+                    rV = false;
+            }
+            return rV;
+        }
+        bool IsSmall (int[]fraction)
+        {
+        if (fraction[0]<0)
+                fraction[0]=fraction[0]*-1
+if (fraction[1]<0)
+                fraction[1]=fraction[1]*-1
+            return ((fraction[0] / fraction[1]) < 1);
+        }
+        bool IsBig(int[] fraction)
+        {
+            if (fraction[0]<0)
+                fraction[0]=fraction[0]*-1
+if (fraction[1]<0)
+                fraction[1]=fraction[1]*-1
+            return ((fraction[0] / fraction[1]) >= 1);
+        }
+        bool IsOne(int[] fraction)
+        {
+            return (fraction[0]==fraction[1] && fraction[0] !=0);
+        }
+        bool IsZero (int[] fraction)
+        {
+            return (fraction[0] == 0 && fraction[1] != 0);
+        }
+        bool IsUnitFraction (int[]fraction)
+        {
+            return (fraction[0] == 1 %% fraction[1] != 0);
+        }
+        bool IsGreaterThan(int[]f1, int[]f2)
+        {
+            return ((f1[0]/f1[1]) > (f2[0]/f2[1]));
+        }
+        bool IsLessThan(int[] f1, int[] f2)
+        {
+            return ((f1[0] / f1[1]) < (f2[0] / f2[1]));
+        }
+
+
+        //Changing functions (ALMOST DONE)
+        static void MakeSimplified(int[] fraction)
+        {
+            for (int i = 2; i < fraction[0]; i++)
+            {
+                if (fraction[0] % i == 0 && fraction[1] % i ==0)
+                {
+                    fraction[0] = fraction[0] / i;
+                    fraction[1] = fraction[1] / i;
+                    i--;
+                }
+            }
+        }
+        static void MakeStandardForm(int[]fraction)
+        {
+            if (fraction[0]/fraction[1] > 0)
+            {
+                if (fraction[0] < 0)
+                    fraction[0] = fraction[0] * -1;
+                if (fraction[1] < 0)
+                    fraction[1] = fraction[1] * -1;
+            }
+            if (fraction[0]/fraction[1] < 0)
+            {
+                if (fraction[0] > 0)
+                    fraction[0] = fraction[0] * -1;
+                if (fraction[1] < 0)
+                    fraction[1] = fraction[1] * -1;
+            }
+        }
+        static void MakePositive(int[] fraction)
+        {
+            if (fraction[0]/fraction[1] < 0)
+            {
+                fraction[0] = fraction[0] * -1;
+            }
+        }
+        static void MakeNegative(int[] fraction)
+        {
+            if (fraction[0]/fraction[1] > 0)
+            {
+                fraction[0] = fraction[0] * -1;
+            }
+        }
+        static void MakeMultiple(int[] fraction, int multiple) //NEED TO DO
+        {
+            fraction[0] = fraction[0] * multiple;
+        }
+        static void MakeReciprocal(int[] fraction)
+        {
+            int num = fraction[0];
+            int den = fraction[1];
+            fraction[0] = den;
+            fraction[1] = num;
+        }
+        static void Adder(int[] fraction1, int[] fraction2) //NEED TO DO
+        {
+            
+        }
+        static void Multiplier(int[]fraction1, int[]fraction2)
+        {
+            fraction1[0] = fraction1[0] * fraction2[0];
+            fraction1[0] = fraction1[0] * fraction2[0];
+        }
+        static void Exponentiator(int[]fraction, int power)
+        {
+            if (power > 0)
+            {
+                for (int i = 1; i < power; i++)
+                {
+                    fraction[0] = fraction[0] * fraction[0];
+                }
+            }
+            if (power < 0)
+            {
+                for (int i = 1; i > power; i--)
+                {
+                    fraction[0] = fraction[0] / fraction[0];
+                }
+            }
+            if (power == 0)
+            {
+                fraction[0] = 1;
+            }
+        }
+
+
+        //Calculation Functions
+        static int[] Reciprocal (int[] fraction)
+        {
+            if (fraction[1] != 0)
+            {
+                int[] fract = new int[2];
+                int num = fraction[0];
+                int den = fraction[1];
+                fract[0] = den;
+                fract[1] = num;
+                return fract;
+            }
+            else
+                return 0; //RETURN 0/0
+        }
+        static int[] Negative(int[] fraction)
+        {
+            if (fraction[1] != 0)
+            {
+                int[] fract = new int[2];
+                int num = fraction[0]*-1;
+                int den = fraction[1];
+                fract[0] = num;
+                fract[1] = den;
+                return fract;
+            }
+            else
+                return 0; //RETURN 0/0
+        }
+        
+    }
+
+
+}
